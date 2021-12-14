@@ -626,7 +626,7 @@
         do i=1,me%n_cols
             header(i) = me%header(i)
         end do
-        status_ok = .false.
+        status_ok = .true.
 
     else
         if (me%verbose) write(error_unit,'(A)') 'Error: no header in class.'
@@ -657,7 +657,7 @@
         do i=1,me%n_cols
             header(i) = me%header(i)%str
         end do
-        status_ok = .false.
+        status_ok = .true.
 
     else
         if (me%verbose) write(error_unit,'(A)') 'Error: no header in class.'
@@ -816,6 +816,7 @@
         do i=1,me%n_cols
             call infer_variable_type(me%csv_data(1,i)%str,itypes(i))
         end do
+        status_ok = .true.
     else
         if (me%verbose) write(error_unit,'(A,1X,I5)') 'Error: class has not been initialized'
         status_ok = .false.
