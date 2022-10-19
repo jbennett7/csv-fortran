@@ -235,7 +235,6 @@
                                 !! (0 if no header specified)
     character(len=1) :: tmp     !! for skipping a row
 
-    call me%destroy()
     arrays_allocated = .false.
 
     me%missing%str = defmissing
@@ -299,7 +298,9 @@
                 ! columns.
                 n_cols = size(row_data)
                 me%n_cols = n_cols
+                if(allocated(me%csv_data)) deallocate(me%csv_data)
                 allocate(me%csv_data(n_rows,n_cols))
+                if(allocated(me%header)) deallocate(me%header)
                 if (iheader/=0) allocate(me%header(n_cols))
                 arrays_allocated = .true.
             end if
@@ -350,8 +351,6 @@
     integer :: istat       !! open `iostat` flag
     logical :: append_flag !! local copy of `append` argument
     logical :: file_exists !! if the file exists
-
-    call me%destroy()
 
     me%n_cols = n_cols
 
