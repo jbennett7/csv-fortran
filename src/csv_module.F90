@@ -48,8 +48,8 @@
 
         ! NaN values for undefined and missing values
         integer :: i_nan = -9999
-        real :: r_nan_sp = -9999.9_sp
-        real :: r_nan_wp = -9999.9_wp
+        real :: r_nan_sp = -9999.9
+        real :: r_nan_wp = -9999.9
         !logical :: l_nan = .nan. ! Define a .nan. logical operator
 
         ! for reading a csv file:
