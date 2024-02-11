@@ -46,6 +46,12 @@
         character(len=1) :: quote     = '"'  !! quotation character
         character(len=1) :: delimiter = ','  !! delimiter character
 
+        ! NaN values for undefined and missing values
+        integer :: i_nan = -9999
+        real :: r_nan_sp = -9999.9_sp
+        real :: r_nan_wp = -9999.9_wp
+        !logical :: l_nan = .nan. ! Define a .nan. logical operator
+
         ! for reading a csv file:
         integer :: n_rows = 0  !! number of rows in the file
         integer :: n_cols = 0  !! number of columns in the file
@@ -991,15 +997,15 @@
                 type is (integer(ip))
                     if (me%verbose) write(error_unit,'(A)') &
                         'Error converting string to integer: '//trim(me%csv_data(i,icol)%str)
-                    r(i) = 0
+                    r(i) = me%i_nan
                 type is (real(sp))
                     if (me%verbose) write(error_unit,'(A)') &
                         'Error converting string to real(real32): '//trim(me%csv_data(i,icol)%str)
-                    r(i) = zero
+                    r(i) = r_nan_sp
                 type is (real(wp))
                     if (me%verbose) write(error_unit,'(A)') &
                         'Error converting string to real(real64): '//trim(me%csv_data(i,icol)%str)
-                    r(i) = zero
+                    r(i) = r_nan_wp
                 type is (logical)
                     if (me%verbose) write(error_unit,'(A)') &
                         'Error converting string to logical: '//trim(me%csv_data(i,icol)%str)
