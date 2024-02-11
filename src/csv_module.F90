@@ -48,8 +48,8 @@
 
         ! NaN values for undefined and missing values
         integer :: i_nan = -9999
-        real :: r_nan_sp = -9999.9
-        real :: r_nan_wp = -9999.9
+        real :: r_nan_sp = -9999.9_sp
+        real :: r_nan_wp = -9999.9_wp
         !logical :: l_nan = .nan. ! Define a .nan. logical operator
 
         ! for reading a csv file:
@@ -1001,11 +1001,11 @@
                 type is (real(sp))
                     if (me%verbose) write(error_unit,'(A)') &
                         'Error converting string to real(real32): '//trim(me%csv_data(i,icol)%str)
-                    r(i) = r_nan
+                    r(i) = r_nan_sp
                 type is (real(wp))
                     if (me%verbose) write(error_unit,'(A)') &
                         'Error converting string to real(real64): '//trim(me%csv_data(i,icol)%str)
-                    r(i) = r_nan
+                    r(i) = r_nan_wp
                 type is (logical)
                     if (me%verbose) write(error_unit,'(A)') &
                         'Error converting string to logical: '//trim(me%csv_data(i,icol)%str)
